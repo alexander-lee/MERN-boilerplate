@@ -50,11 +50,13 @@ gulp.task('images', function(){
              .pipe(gulp.dest('./public/images'));
 })
 
-gulp.task('default', ['webpack-watch', 'assets-watch'], function(){
+gulp.task('run', function(){
   var forbidden = ['client', 'node_modules', 'public'];
   nodemon({
     script: './bin/www',
     ext: 'js',
     ignore: forbidden
   })
-});
+})
+
+gulp.task('default', ['webpack-watch', 'assets-watch', 'run']);

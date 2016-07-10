@@ -3,19 +3,19 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  entry: './client/index/app.js',
+  entry: [
+  'webpack/hot/dev-server',
+  'webpack-hot-middleware/client',
+  './client/index/app.js'
+  ],
   output: {
-    path: __dirname + '/public/js',
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/js/'
   },
 
   cache: true,
   debug: false,
-
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
 
   stats: {
     colors: true,
@@ -25,9 +25,24 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'react-hot!babel',//['react-hot', 'babel'],
+      },
+      /*
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          presets: ['react', 'es2015']
+        }
+      },
+      */
+      {
         test: /\.(scss|sass)$/,
         loader: 'style!css?modules!sass?outputStyle=expanded'
-      }
+      },
       {
         test: /\.css$/,
         loader: 'style!css' //Same thing as [style-loader, css-loader]
@@ -40,6 +55,8 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ]
 }
