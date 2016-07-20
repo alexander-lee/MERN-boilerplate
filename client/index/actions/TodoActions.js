@@ -1,4 +1,4 @@
-var TodoConstants = require('../TodoConstants.js')
+var TodoConstants = require('../constants/TodoConstants.js')
 
 module.exports = {
   addTodo: function(text){

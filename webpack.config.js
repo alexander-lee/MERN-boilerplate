@@ -16,6 +16,7 @@ module.exports = {
 
   cache: true,
   debug: false,
+  devtool: 'eval',
 
   stats: {
     colors: true,

@@ -1,6 +1,6 @@
 var _ = require('underscore');
 
-var TodoConstants = require('../TodoConstants.js');
+var TodoConstants = require('../constants/TodoConstants.js');
 var initalState = [];
 
 module.exports = function(state, action){

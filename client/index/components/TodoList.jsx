@@ -51,7 +51,6 @@ var TodoList = React.createClass({
       </div>
     );
   }
-
 });
 
 var mapStateToProps = function(state){
