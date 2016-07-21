@@ -2,7 +2,7 @@ var express = require('express');
 var bcrypt = require('bcryptjs');
 var router = express.Router();
 
-var User = require('../models/model').User;
+var User = require('../server/model').User;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

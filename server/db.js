@@ -9,6 +9,7 @@ var knex = require('knex')({
   },
   debug: true
 });
+
 var bookshelf = require('bookshelf')(knex);
 
 module.exports = bookshelf;

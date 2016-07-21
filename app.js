@@ -33,7 +33,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //============ PASSPORT ============
-var Model = require('./models/model');
+var Model = require('./server/model');
 passport.serializeUser(function(user, done){
   done(null, user.id);
 });
