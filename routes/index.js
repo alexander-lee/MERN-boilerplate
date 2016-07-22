@@ -1,6 +1,7 @@
 var express = require('express');
-var passport = require('passport');
 var router = express.Router();
+
+var authenticate = require('../utils/AuthHelper.js');
 
 
 /* GET home page. */
@@ -8,12 +9,9 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/signin'
-  })
-);
+router.post('/login', function(req, res, next){
+  authenticate(req, res, next);
+});
 
 router.post('/logout', function(req, res){
   var name = req.user.username;

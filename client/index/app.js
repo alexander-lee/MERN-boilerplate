@@ -9,30 +9,46 @@ var browserHistory = require('react-router').browserHistory;
 
 var createStore = require('redux').createStore;
 var applyMiddleware = require('redux').applyMiddleware;
+var combineReducers = require('redux').combineReducers;
 var compose = require('redux').compose;
 
 var Provider = require('react-redux').Provider;
 
+var syncHistoryWithStore = require('react-router-redux').syncHistoryWithStore;
+var routerReducer = require('react-router-redux').routerReducer;
+var routerMiddleware = require('react-router-redux').routerMiddleware;
+
+var thunk = require('redux-thunk').default;
+
 var IndexWrapper = require('./components/IndexWrapper.jsx');
 var IndexWindow = require('./components/IndexWindow.jsx');
 var TodoList = require('./components/TodoList.jsx');
+
+var Login = require('./components/Login.jsx');
 var Signup = require('./components/Signup.jsx');
 
 var reducer = require('./reducers/index.js');
-var thunk = require('redux-thunk').default;
+
 var store = createStore(
-  reducer, 
+  combineReducers({
+    reducer,
+    routing: routerReducer
+  }), 
   compose(
-    applyMiddleware(thunk), 
+    applyMiddleware(thunk),
+    applyMiddleware(routerMiddleware(browserHistory)), 
     window.devToolsExtension && window.devToolsExtension()
   )
 )
 
+var history = syncHistoryWithStore(browserHistory, store);
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path="/" component={IndexWrapper}>
-        <IndexRoute component={Signup} />
+        <IndexRoute component={Login} />
+        <Route path="signup" component={Signup} />
         <Route path="*" component={IndexWindow} />
       </Route>
     </Router>

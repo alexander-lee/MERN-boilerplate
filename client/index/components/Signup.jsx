@@ -8,7 +8,7 @@ var Signup = React.createClass({
     return (
       <div>
         <input type="text" placeholder="username" ref="username" />
-        <input type="text" placeholder="password" ref="password" />
+        <input type="password" placeholder="password" ref="password" />
         <button onClick={this._onClick}>Signup</button>
       </div>
     );
@@ -23,7 +23,7 @@ var Signup = React.createClass({
       return;
     }
 
-    LoginActions.Signup({
+    LoginActions.signup({
       username: username,
       password: password
     })(this.props.dispatch);
@@ -31,8 +31,7 @@ var Signup = React.createClass({
 });
 
 var mapStateToProps = function(state){
-  return {
-  }
+  return {}
 }
 
 module.exports = connect(mapStateToProps)(Signup);

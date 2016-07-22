@@ -1,8 +1,7 @@
 var _ = require('underscore');
 
 var actions = [
-  'SIGNUP',
-  'LOGIN',
+  'APPLICATION_ERROR'
 ]
 
 var hash = {};

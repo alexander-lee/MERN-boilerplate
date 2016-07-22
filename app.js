@@ -24,7 +24,7 @@ var webpackConfig = require('./webpack.config');
 var compiler = webpack(webpackConfig);
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/api/users');
 
 var app = express();
 
@@ -34,6 +34,7 @@ app.set('view engine', 'ejs');
 
 //============ PASSPORT ============
 var Model = require('./server/model');
+var bcrypt = require('bcryptjs');
 passport.serializeUser(function(user, done){
   done(null, user.id);
 });
@@ -73,17 +74,22 @@ function(req, email, password, done){
 */
 
 passport.use(new LocalStrategy({
-  usernameField: 'email',
+  usernameField: 'username',
   passwordField: 'password',
 },
-function(email, password, done){
-  Model.User.forge({email: email}).fetch()
+function(username, password, done){
+  Model.User.forge({username: username}).fetch()
   .then(function(user){
     console.log('login-user:',user);
+
+    //Check if User Exists
     if(!user)
-      return done(null, false, req.flash('loginMessage', 'No User Found'));
-    if(user.password !== password)
-      return done(null, false, req.flash('loginMessage', 'Invalid Password'));
+      return done(null, false, {message:'No User Found'});
+
+    //Convert User into JSON & check if the password matches
+    user = user.toJSON();
+    if(!bcrypt.compareSync(password, user.password))
+      return done(null, false, {message:'Invalid Password'});
 
     return done(null, user);
   })
@@ -138,6 +144,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 //API Routes
 app.use('/', routes);
 app.use('/users', users);
+app.use('*', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

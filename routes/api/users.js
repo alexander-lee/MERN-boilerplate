@@ -2,7 +2,7 @@ var express = require('express');
 var bcrypt = require('bcryptjs');
 var router = express.Router();
 
-var User = require('../server/model').User;
+var User = require('../../server/model').User;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -19,7 +19,7 @@ router.post('/', function(req, res){
       throw 'Username taken';
     
     var password = user.password;
-    var hashed_pass = bcrypt.hashSync(password);
+    var hashed_pass = bcrypt.hashSync(password, 8);
 
     var newUser = User.forge({username: user.username, password: hashed_pass});
     return newUser.save()
