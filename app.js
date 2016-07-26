@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 
 //============ PASSPORT ============
 var Model = require('./server/model');
-var bcrypt = require('bcryptjs');
+//var bcrypt = require('bcryptjs');
 passport.serializeUser(function(user, done){
   done(null, user.id);
 });

@@ -35,8 +35,9 @@ var store = createStore(
   }), 
   compose(
     applyMiddleware(thunk),
-    applyMiddleware(routerMiddleware(browserHistory)), 
-    window.devToolsExtension && window.devToolsExtension()
+    applyMiddleware(routerMiddleware(browserHistory)),
+    //Dev Console
+    typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
   )
 )
 
