@@ -13,12 +13,20 @@ router.post('/login', function(req, res, next){
   authenticate(req, res, next);
 });
 
-router.post('/logout', function(req, res){
-  var name = req.user.username;
-  console.log('LOGGING OUT', name);
-  req.logout();
-  res.redirect('/');
-  req.session.notice = "You have been successfully logged out";
+router.post('/logout', function(req, res, next){
+  if(!req.isAuthenticated()){
+    res.status(200).send({
+      success: false,
+      msg: 'Currently not Logged In!'
+    });
+  }
+  else {
+    req.logout();
+    res.status(200).send({
+      success: true,
+      redirectTo: '/'
+    });
+  }
 });
 
 

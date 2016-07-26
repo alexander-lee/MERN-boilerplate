@@ -55,7 +55,7 @@ var TodoList = React.createClass({
 
 var mapStateToProps = function(state){
   return {
-    todoList: state
+    todoList: state.app.todos
   }
 }
 

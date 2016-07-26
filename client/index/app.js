@@ -21,7 +21,6 @@ var routerMiddleware = require('react-router-redux').routerMiddleware;
 var thunk = require('redux-thunk').default;
 
 var IndexWrapper = require('./components/IndexWrapper.jsx');
-var IndexWindow = require('./components/IndexWindow.jsx');
 var TodoList = require('./components/TodoList.jsx');
 
 var Login = require('./components/Login.jsx');
@@ -31,7 +30,7 @@ var reducer = require('./reducers/index.js');
 
 var store = createStore(
   combineReducers({
-    reducer,
+    app: reducer,
     routing: routerReducer
   }), 
   compose(
@@ -49,7 +48,7 @@ ReactDOM.render(
       <Route path="/" component={IndexWrapper}>
         <IndexRoute component={Login} />
         <Route path="signup" component={Signup} />
-        <Route path="*" component={IndexWindow} />
+        <Route path="*" component={TodoList} />
       </Route>
     </Router>
   </Provider>,

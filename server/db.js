@@ -1,13 +1,14 @@
+var db = require('../config.js')[process.env.NODE_ENV].db;
+
 var knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'testdb',
+    host: db.host,
+    user: db.username,
+    password: db.password,
+    database: db.name,
     charset: 'utf8'
-  },
-  debug: true
+  }
 });
 
 var bookshelf = require('bookshelf')(knex);

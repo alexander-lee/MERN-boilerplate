@@ -48,6 +48,14 @@ gulp.task('images', function(){
                 svgoPlugins: [{removeViewBox: false}]
              }))
              .pipe(gulp.dest('./public/images'));
+});
+
+gulp.task('dev-env', function(){
+  return process.env.NODE_ENV = 'development';
+})
+
+gulp.task('prod-env', function(){
+  return process.env.NODE_ENV = 'production';
 })
 
 gulp.task('run', function(){
@@ -59,4 +67,4 @@ gulp.task('run', function(){
   })
 })
 
-gulp.task('default', ['webpack-watch', 'assets-watch', 'run']);
+gulp.task('default', ['webpack-watch', 'assets-watch', 'dev-env', 'run']);

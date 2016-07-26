@@ -3,6 +3,7 @@ var _ = require('underscore');
 var actions = [
   'SIGNUP',
   'LOGIN',
+  'LOGOUT'
 ]
 
 var hash = {};

@@ -10,7 +10,11 @@ module.exports = function(state, action){
   switch(action.type){
     case LoginConstants.LOGIN:
       return {
-
+        loggedIn: true 
+      }
+    case LoginConstants.LOGOUT:
+      return {
+        loggedIn: false
       }
     default:
       return state;
