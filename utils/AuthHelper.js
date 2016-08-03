@@ -19,7 +19,7 @@ module.exports = function(req, res, next){
   .catch(function(err){
     res.status(200).send({
       success: false,
-      err: err
+      err: err.toString()
     })
   })
 }
@@ -32,9 +32,9 @@ var authenticate = function(type, req, res, next){
   return new Promise(function(resolve, reject){
     passport.authenticate(type, function(err, user, info){
       if(err)
-        reject(err.message);
+        reject(new Error(err.message));
       else if(!user)
-        reject(info.message);
+        reject(new Error(info.message));
       else 
         resolve(user);
     })(req, res, next);

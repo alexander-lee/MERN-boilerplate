@@ -1,4 +1,3 @@
-module.exports = {
   increase: function(n){
     return {
       type: 'INCREASE',
