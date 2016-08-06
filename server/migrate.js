@@ -1,15 +1,4 @@
-var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'testdb',
-    charset: 'utf8'
-  },
-  debug: true
-});
-
+var knex = require('./db').knex;
 var Schema = require('./schema');
 var _ = require('underscore');
 var Promise = require('bluebird'); 
