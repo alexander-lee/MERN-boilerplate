@@ -16,6 +16,8 @@ var routes = require('./routes/index');
 var users = require('./routes/api/users');
 
 var app = express();
+var knex = require('./server/db').knex;
+var KnexSessionStore = require('connect-session-knex')(session);
 
 //============ VIEW ===========
 app.set('views', path.join(__dirname, 'views'));
@@ -97,9 +99,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
   secret: 'keyboard cat', 
-  saveUninitialized: false, 
-  resave: false
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 //1 Hour
+  },
+  store: new KnexSessionStore({knex: knex})
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -131,9 +138,10 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 
 //API Routes
-app.use('/', routes);
-app.use('/users', users);
-app.use('*', routes);
+var index = require('./routes/index');
+app.use('/', index);
+app.use('/api/users', require('./routes/api/users'));
+app.use('*', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
