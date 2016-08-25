@@ -1,24 +1,24 @@
-var React = require('react');
-var connect = require('react-redux').connect;
-var Link = require('react-router').Link;
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
-var LoginActions = require('../actions/LoginActions');
+import * as LoginActions from '../actions/LoginActions';
 
-var Login = React.createClass({
-  render: function(){
+class Login extends React.Component {
+  render() {
     return ( 
       <div>
         <input type="text" placeholder="username" ref="username"/>
         <input type="password" placeholder="password" ref="password"/>
-        <button onClick={this._onClick}>Login</button>
+        <button onClick={ () => this._onClick() }>Login</button>
         <Link to='/signup'>Signup</Link>
       </div>
     );
-  },
+  }
 
-  _onClick: function(){
-    var username = this.refs.username.value;
-    var password = this.refs.password.value;
+  _onClick() {
+    const username = this.refs.username.value;
+    const password = this.refs.password.value;
 
     if(!username || !password){
       console.log('Front End Error', 'No password/username given');
@@ -30,11 +30,11 @@ var Login = React.createClass({
       password: password
     })(this.props.dispatch);
   }
-});
+}
 
-var mapStateToProps = function(state){
+function mapStateToProps(state){
   return {}
 }
 
 
-module.exports = connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(Login);

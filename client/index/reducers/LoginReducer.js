@@ -1,12 +1,10 @@
-var LoginConstants = require('../constants/LoginConstants')
+import LoginConstants from '../constants/LoginConstants';
 
 const initialState = {
   loggedIn: false
 }
 
-module.exports = function(state, action){
-  state = state || initialState;
-
+export default function(state = initialState, action){
   switch(action.type){
     case LoginConstants.LOGIN:
       return {

@@ -1,7 +1,7 @@
-var Promise = require('bluebird');
-var ErrorConstants = require('../constants/ErrorConstants');
+import Promise from 'bluebird';
+import ErrorConstants from '../constants/ErrorConstants';
 
-module.exports = function(promise, dispatch, successHandler, errorHandler){
+export default function(promise, dispatch, successHandler, errorHandler){
   if(!successHandler){
     throw new Error('No Success Handler Provided!');
   }

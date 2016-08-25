@@ -1,15 +1,15 @@
-var _ = require('underscore');
+import _ from 'underscore';
 
-var actions = [
+const actions = [
   'SIGNUP',
   'LOGIN',
   'LOGOUT'
 ]
 
-var hash = {};
+const hash = {};
 
-_.each(actions, function(action){
+_.each(actions, (action) => {
   hash[action] = action;
 })
 
-module.exports = hash;
+export default hash;

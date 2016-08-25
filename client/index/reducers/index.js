@@ -1,6 +1,6 @@
-var combineReducers = require('redux').combineReducers;
+import { combineReducers } from 'redux';
 
-var todos = require('./TodoReducer.js');
-var login = require('./LoginReducer.js');
+import todos from './TodoReducer';
+import login from './LoginReducer';
 
-module.exports = combineReducers({todos, login});
+export default combineReducers({todos, login});

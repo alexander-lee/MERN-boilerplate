@@ -1,6 +1,6 @@
-var push = require('react-router-redux').push;
+import { push } from 'react-router-redux';
 
-module.exports = function(dispatch, redirectURL){
+export default function(dispatch, redirectURL){
   if(!redirectURL) 
     return;
 

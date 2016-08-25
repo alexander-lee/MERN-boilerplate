@@ -1,11 +1,10 @@
-var _ = require('underscore');
+import _ from 'underscore';
 
-var TodoConstants = require('../constants/TodoConstants.js');
+import TodoConstants from '../constants/TodoConstants';
+
 var initalState = [];
 
-module.exports = function(state, action){
-  state = state || initalState;
-
+export default function(state = initalState, action){
   switch(action.type){
     case TodoConstants.CREATE_TODO:
       return [{

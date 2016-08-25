@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var IndexWrapper = React.createClass({
-  render: function(){
+export default class IndexWrapper extends React.Component {
+  render() {
     return (
       <div>
         <h1> Test App </h1>
@@ -9,6 +9,4 @@ var IndexWrapper = React.createClass({
       </div>
     );
   }
-});
-
-module.exports = IndexWrapper;
+}

@@ -1,19 +1,11 @@
-var createStore = require('redux').createStore;
-var applyMiddleware = require('redux').applyMiddleware;
-var combineReducers = require('redux').combineReducers;
-var compose = require('redux').compose;
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { routerReducer, routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 
-var thunk = require('redux-thunk').default;
+import rootReducer from './reducers/index';
 
-var routerReducer = require('react-router-redux').routerReducer;
-var routerMiddleware = require('react-router-redux').routerMiddleware;
-var syncHistoryWithStore = require('react-router-redux').syncHistoryWithStore;
-
-var browserHistory = require('react-router').browserHistory;
-
-var rootReducer = require('./reducers/index.js');
-
-var store = createStore(
+const store = createStore(
   combineReducers({
     app: rootReducer,
     routing: routerReducer
@@ -26,9 +18,6 @@ var store = createStore(
   )
 );
 
-var history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
-module.exports = {
-  store: store,
-  history: history
-}
+export { store, history }

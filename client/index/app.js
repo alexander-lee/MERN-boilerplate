@@ -1,21 +1,17 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var Link = require('react-router').Link;
-var IndexRoute = require('react-router').IndexRoute;
+import { Router, Route, Link, IndexRoute } from 'react-router';
 
-var Provider = require('react-redux').Provider;
+import { Provider } from 'react-redux';
 
-var IndexWrapper = require('./components/IndexWrapper.jsx');
-var TodoList = require('./components/TodoList.jsx');
+import IndexWrapper from './components/IndexWrapper.jsx';
+import TodoList from './components/TodoList.jsx';
 
-var Login = require('./components/Login.jsx');
-var Signup = require('./components/Signup.jsx');
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
 
-var store = require('./createStore.js').store;
-var history = require('./createStore.js').history;
+import { store, history } from './createStore';
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,4 +1,4 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     notify = require('gulp-notify'),
     nodemon = require('gulp-nodemon'),
@@ -8,7 +8,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     autoprefixer = require('gulp-autoprefixer');
 
-var config = require('./webpack.config.js');
+const config = require('./webpack.config.js');
 
 
 gulp.task('build', ['sass', 'images'], function(){
@@ -59,7 +59,7 @@ gulp.task('prod-env', function(){
 })
 
 gulp.task('run', function(){
-  var forbidden = ['client', 'node_modules', 'public'];
+  const forbidden = ['client', 'node_modules', 'public'];
   nodemon({
     script: './bin/www',
     ext: 'js',
