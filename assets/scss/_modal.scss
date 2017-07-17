@@ -1,0 +1,39 @@
+@import "defaults";
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100px;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: rgba($black, 0.7);
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.modal {
+  width: 50%;
+  height: 50%;
+  background-color: darken($white, 5%);
+  padding: rem(20px) rem(40px);
+  border-radius: 10px;
+  text-align: center;
+
+  .button-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: rem(20px);
+  }
+
+  img {
+    width: 50%;
+    height: auto;
+    margin: rem(20px);
+  }
+}

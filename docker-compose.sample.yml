@@ -1,0 +1,42 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "/etc/nginx/certs"
+  letsencrypt-nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - "nginx-proxy"
+    environment:
+      - DEBUG=true
+  web:
+    build: .
+    image: alexanderlee/whenisgreat:latest
+    ports:
+      - "4000"
+    environment:
+      - VIRTUAL_HOST=whenisgreat.com,www.whenisgreat.com
+      - LETSENCRYPT_HOST=whenisgreat.com,www.whenisgreat.com
+      - LETSENCRYPT_EMAIL=EMAIL
+    links:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE=WhenIsGreat
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+    volumes:
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:

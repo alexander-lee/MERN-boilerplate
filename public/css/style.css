@@ -1,8 +1,1 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+body{color:#424242;-webkit-font-smoothing:antialiased;font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0}.overlay{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:absolute;top:0;left:0;z-index:1;min-width:100vw;min-height:100vh;background-color:rgba(66,66,66,.7)}.overlay.hidden{display:none}.modal{width:50%;height:50%;background-color:#f2f2f2;padding:1.25rem 2.5rem;border-radius:10px;text-align:center}.modal .button-group{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around;margin-top:1.25rem}.modal img{width:50%;height:auto;margin:1.25rem}.error-page{display:-webkit-box;display:-ms-flexbox;display:flex;margin:0 auto;height:100vh;-ms-flex-pack:distribute;justify-content:space-around;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.error-page h1{font-size:3em}

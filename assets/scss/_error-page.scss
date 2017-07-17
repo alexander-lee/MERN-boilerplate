@@ -1,0 +1,11 @@
+.error-page {
+  display: flex;
+  margin: 0 auto;
+  height: 100vh;
+  justify-content: space-around;
+  align-items: center;
+
+  h1 {
+    font-size: 3em;
+  }
+}

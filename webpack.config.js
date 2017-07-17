@@ -1,22 +1,25 @@
 'use strict';
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+const debug = process.env.NODE_ENV !== 'production';
+
+const productionPlugins = [
+  new webpack.optimize.UglifyJsPlugin()
+];
 
 module.exports = {
   entry: [
-  'webpack/hot/dev-server',
-  'webpack-hot-middleware/client',
-  './client/index/app.js'
+    path.join(__dirname, 'client', 'app.js')
   ],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public', 'js'),
     filename: 'bundle.js',
     publicPath: '/js/'
   },
 
   cache: true,
-  debug: false,
-  devtool: 'eval',
+  debug: debug,
+  devtool: debug ? 'source-map' : null,
 
   stats: {
     colors: true,
@@ -28,18 +31,9 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'react-hot!babel',//['react-hot', 'babel'],
-      },
-      /*
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
         loader: 'babel',
-        query: {
-          presets: ['react', 'es2015']
-        }
+        // query: presets defined in .babelrc
       },
-      */
       {
         test: /\.(scss|sass)$/,
         loader: 'style!css?modules!sass?outputStyle=expanded'
@@ -49,15 +43,21 @@ module.exports = {
         loader: 'style!css' //Same thing as [style-loader, css-loader]
       },
       {
-        test: /\.(png|jpg|woff|woff2|gif)$/, 
+        test: /\.(png|jpg|woff|woff2|gif)$/,
         loader:'url-loader?limit=8192&prefix=/'
+      },
+      {
+        test: /\.(json)$/,
+        loader: 'json-loader'
       }
     ]
   },
-
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+    ...!debug && productionPlugins
   ]
 }

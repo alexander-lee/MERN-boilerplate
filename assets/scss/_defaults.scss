@@ -1,0 +1,29 @@
+
+// Colors
+$black: #424242;
+$dark-gray: #8b8b8b;
+$light-gray: #a0a0a0;
+$lighter-gray: #d0d0d0;
+$white: #ffffff;
+$font-stack: Helvetica, Arial, sans-serif;
+
+body {
+  color: $black;
+  -webkit-font-smoothing: antialiased;
+  font-family: $font-stack;
+  font-size: 16px;
+  margin: 0;
+}
+
+// Functions
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@function rem($px, $base-px: 16) {
+  @return (strip-units($px) / strip-units($base-px)) * 1rem;
+}
+
+@function em($px, $base-px: 16) {
+  @return (strip-units($px) / strip-units($base-px)) * 1em;
+}

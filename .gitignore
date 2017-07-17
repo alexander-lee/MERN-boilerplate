@@ -30,3 +30,8 @@ node_modules
 npm-debug.log
 
 public/js/*
+server/config/auth.js
+flightplan.js
+dist
+docker-compose.yml
+.DS_Store

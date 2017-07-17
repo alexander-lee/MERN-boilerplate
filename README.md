@@ -1,2 +1,1 @@
-# MERN-boilerplate
-Boilerplate for MERN Stack
+# MERN Boilerplate
