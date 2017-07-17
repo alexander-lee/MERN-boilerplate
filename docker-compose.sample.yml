@@ -20,12 +20,12 @@ services:
       - DEBUG=true
   web:
     build: .
-    image: alexanderlee/whenisgreat:latest
+    image: alexanderlee/YOURAPP:latest
     ports:
       - "4000"
     environment:
-      - VIRTUAL_HOST=whenisgreat.com,www.whenisgreat.com
-      - LETSENCRYPT_HOST=whenisgreat.com,www.whenisgreat.com
+      - VIRTUAL_HOST=
+      - LETSENCRYPT_HOST=
       - LETSENCRYPT_EMAIL=EMAIL
     links:
       - mysql
@@ -33,7 +33,7 @@ services:
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=test
-      - MYSQL_DATABASE=WhenIsGreat
+      - MYSQL_DATABASE=MyDatabase
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test
     volumes:
