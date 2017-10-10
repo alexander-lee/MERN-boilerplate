@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import s from './Modal.scss';
 
 class Modal extends Component {
   static propTypes = {
@@ -31,12 +32,12 @@ class Modal extends Component {
 
   render() {
     const overlayClasses = cx({
-      hidden: this.state.hidden
-    }, 'overlay');
+      [s.hidden]: this.state.hidden
+    }, [s.overlay]);
 
     return (
       <div className={overlayClasses}>
-        <div className="modal">
+        <div className={s.modal}>
           {this.props.children}
           <div className="button-group">
             {this.props.onCancel ? <button onClick={this.props.onCancel}>Cancel</button> : null}

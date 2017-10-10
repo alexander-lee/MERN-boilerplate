@@ -1,14 +1,12 @@
 import { push } from 'react-router-redux';
 import _ from 'lodash';
 import Cookies from 'cookies-js';
-import fetcher from '../utils/api-response-helper';
+import fetcher from '../utils/fetcher';
 
 /**
 - Constants
 **/
 export const GET_USER = 'GET_USER';
-export const GET_EVENTS_FROM_USER = 'GET_EVENTS_FROM_USER';
-export const GET_SCHEDULES_FROM_USER = 'GET_SCHEDULES_FROM_USER';
 
 export function getUser() {
   return async function(dispatch, getState) {

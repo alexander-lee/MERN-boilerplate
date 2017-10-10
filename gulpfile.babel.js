@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import source from 'vinyl-source-stream';
 import notify from 'gulp-notify';
 import nodemon from 'gulp-nodemon';
-import webpack from 'gulp-webpack';
+import webpack from 'webpack-stream';
 import sass from 'gulp-sass';
 import postcss from 'gulp-postcss';
 import imagemin from 'gulp-imagemin';
@@ -10,7 +10,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import { exec } from 'child_process';
 
-import config from './webpack.config.js';
+import config from './webpack.config.babel.js';
 
 import migrations from './server/migrations/run-migrations';
 import { runMigrations } from './server/migrations/run-migrations';
@@ -33,7 +33,7 @@ gulp.task('webpack-watch', function() {
 });
 
 gulp.task('assets-watch', ['sass', 'images'], function() {
-  gulp.watch('./assets/scss/**/*', ['sass']);
+  // gulp.watch('./assets/scss/**/*', ['sass']);
   gulp.watch('./public/images/*', ['images']);
 });
 
@@ -45,12 +45,12 @@ gulp.task('server-build', function() {
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('sass', function() {
-  return gulp.src('./assets/scss/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss())
-    .pipe(gulp.dest('./public/css'))
-});
+// gulp.task('sass', function() {
+//   return gulp.src('./assets/scss/**/*.scss')
+//     .pipe(sass().on('error', sass.logError))
+//     .pipe(postcss())
+//     .pipe(gulp.dest('./public/css'))
+// });
 
 gulp.task('images', function() {
   return gulp.src('./assets/images/**/*')
